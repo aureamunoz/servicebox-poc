@@ -5,29 +5,29 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.jboss.resteasy.annotations.jaxrs.FormParam;
+import org.jboss.resteasy.reactive.RestForm;
 
 public class NewCredentialRequest {
 
-    @FormParam
+    @RestForm
     public Long id;
 
     @NotBlank
-    @FormParam
+    @RestForm
     public String name;
 
     @NotNull
-    @FormParam
+    @RestForm
     public Long serviceId;
 
     @NotBlank
-    @FormParam
+    @RestForm
     public String username;
 
     @NotBlank
-    @FormParam
+    @RestForm
     public String password;
 
-    @FormParam
+    @RestForm
     public List<String> params;
 }

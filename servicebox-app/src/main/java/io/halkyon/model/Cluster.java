@@ -15,11 +15,11 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.panache.common.Sort;
 
 @Entity

@@ -7,7 +7,8 @@ import io.halkyon.model.Service;
 import io.halkyon.resource.requests.NewCredentialRequest;
 import io.halkyon.utils.AcceptedResponseBuilder;
 import io.quarkus.qute.TemplateInstance;
-import org.jboss.resteasy.annotations.Form;
+import org.jboss.resteasy.reactive.MultipartForm;
+import org.jboss.resteasy.reactive.RestForm;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -45,9 +46,10 @@ public class CredentialResource {
 
     @POST
     @Transactional
-    @Consumes("application/x-www-form-urlencoded")
+//    @Consumes("application/x-www-form-urlencoded")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_HTML)
-    public Response add(@Form NewCredentialRequest request, @HeaderParam("HX-Request") boolean hxRequest) {
+    public Response add(@MultipartForm NewCredentialRequest request, @HeaderParam("HX-Request") boolean hxRequest) {
         Set<ConstraintViolation<NewCredentialRequest>> errors = validator.validate(request);
         AcceptedResponseBuilder response = AcceptedResponseBuilder.withLocation("/credentials");
         if (!errors.isEmpty()) {

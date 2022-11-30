@@ -12,7 +12,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jboss.resteasy.annotations.Form;
 
 import io.halkyon.Templates;
 import io.halkyon.model.Claim;
@@ -21,6 +20,8 @@ import io.halkyon.services.ClaimStatus;
 import io.halkyon.services.ClaimingServiceJob;
 import io.halkyon.utils.AcceptedResponseBuilder;
 import io.quarkus.qute.TemplateInstance;
+import org.jboss.resteasy.reactive.MultipartForm;
+import org.jboss.resteasy.reactive.RestForm;
 
 @Path("/claims")
 public class ClaimResource {
@@ -80,9 +81,10 @@ public class ClaimResource {
 
     @POST
     @Transactional
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_HTML)
-    public Response add(@Form io.halkyon.model.Claim claim, @HeaderParam("HX-Request") boolean hxRequest) {
+    public Response add(@MultipartForm io.halkyon.model.Claim claim, @HeaderParam("HX-Request") boolean hxRequest) {
         Set<ConstraintViolation<Claim>> errors = validator.validate(claim);
         AcceptedResponseBuilder response = AcceptedResponseBuilder.withLocation("/claim");
 

@@ -7,7 +7,7 @@ import io.halkyon.services.ApplicationDiscoveryJob;
 import io.halkyon.services.ServiceDiscoveryJob;
 import io.halkyon.utils.AcceptedResponseBuilder;
 import io.quarkus.qute.TemplateInstance;
-import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+import org.jboss.resteasy.reactive.MultipartForm;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

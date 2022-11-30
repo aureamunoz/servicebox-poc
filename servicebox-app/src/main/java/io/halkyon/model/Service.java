@@ -19,13 +19,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
-import org.jboss.resteasy.annotations.jaxrs.FormParam;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import io.quarkus.panache.common.Sort;
+import org.jboss.resteasy.reactive.RestForm;
 
 @Entity
 @Table(indexes = @Index(columnList = "name,version", unique = true))
@@ -36,17 +35,17 @@ public class Service extends PanacheEntityBase {
     public Long id;
 
     @NotBlank(message = "Name must not be empty")
-    @FormParam
+    @RestForm
     public String name;
 
     @NotBlank(message = "Version must not be empty")
-    @FormParam
+    @RestForm
     public String version;
 
     /* in form of tcp:8080*/
     @NotBlank(message = "Service endpoint must not be empty")
     @javax.validation.constraints.Pattern(regexp = "\\w+:\\d+", message = "Wrong format in service endpoint. It must be 'protocol:port'")
-    @FormParam
+    @RestForm
     public String endpoint;
     public String namespace;
     public Boolean available;

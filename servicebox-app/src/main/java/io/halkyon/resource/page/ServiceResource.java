@@ -19,13 +19,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jboss.resteasy.annotations.Form;
 
 import io.halkyon.Templates;
 import io.halkyon.model.Service;
 import io.halkyon.services.ServiceDiscoveryJob;
 import io.halkyon.utils.AcceptedResponseBuilder;
 import io.quarkus.qute.TemplateInstance;
+import org.jboss.resteasy.reactive.MultipartForm;
+import org.jboss.resteasy.reactive.RestForm;
 
 @Path("/services")
 public class ServiceResource {
@@ -45,9 +46,10 @@ public class ServiceResource {
 
     @POST
     @Transactional
-    @Consumes("application/x-www-form-urlencoded")
+//    @Consumes("application/x-www-form-urlencoded")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_HTML)
-    public Response add(@Form io.halkyon.model.Service service, @HeaderParam("HX-Request") boolean hxRequest) {
+    public Response add(@MultipartForm io.halkyon.model.Service service, @HeaderParam("HX-Request") boolean hxRequest) {
         Set<ConstraintViolation<Service>> errors = validator.validate(service);
         AcceptedResponseBuilder response = AcceptedResponseBuilder.withLocation("/services");
 

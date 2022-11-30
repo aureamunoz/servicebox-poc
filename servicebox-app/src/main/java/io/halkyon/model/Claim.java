@@ -2,9 +2,10 @@ package io.halkyon.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.halkyon.services.ClaimStatus;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import io.quarkus.panache.common.Sort;
-import org.jboss.resteasy.annotations.jaxrs.FormParam;
+import org.jboss.resteasy.reactive.MultipartForm;
+import org.jboss.resteasy.reactive.RestForm;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Entity
+@MultipartForm
 public class Claim extends PanacheEntityBase {
 
     @Id
@@ -30,18 +32,18 @@ public class Claim extends PanacheEntityBase {
     public Long id;
 
     @NotBlank(message = "Name must not be empty")
-    @FormParam
+    @RestForm
 	public String name;
     @NotBlank(message = "Service Requested must not be empty")
-    @FormParam
+    @RestForm
     public String serviceRequested;
-    @FormParam
+    @RestForm
     public String description;
-    @FormParam
+    @RestForm
     public String status;
-    @FormParam
+    @RestForm
     public String owner;
-    @FormParam
+    @RestForm
     public Date created;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_id", referencedColumnName = "id")
