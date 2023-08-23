@@ -61,7 +61,6 @@ function build() {
      -Dquarkus.container-image.tag=${IMAGE_TAG} \
      -Dquarkus.container-image.insecure=true \
      -Dquarkus.kubernetes.ingress.host=${PRIMAZA_URL} \
-     -Dlog.level=INFO \
      -Dgit.sha.commit=${GITHUB_SHA_COMMIT} \
      -Dgithub.repo=${PRIMAZA_GITHUB_REPO}"
 }
