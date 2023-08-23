@@ -15,7 +15,7 @@ GITHUB_SHA_COMMIT=${GITHUB_SHA_COMMIT:-$(git rev-parse --short HEAD)}
 
 # Parameters to be used when we build and push to a local container registry
 REGISTRY_GROUP=${REGISTRY_GROUP:-local}
-REGISTRY=${KIND_REGISTRY:-kind-registry:5000}
+REGISTRY=${KIND_REGISTRY:-kind-registry:5001}
 IMAGE_TAG=${IMAGE_TAG:-latest}
 #INGRESS_HOST=primaza.${VM_IP}.nip.io
 PRIMAZA_URL=${PRIMAZA_URL:-primaza.$VM_IP.nip.io}
