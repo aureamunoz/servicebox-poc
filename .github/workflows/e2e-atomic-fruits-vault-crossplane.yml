@@ -175,6 +175,10 @@ jobs:
         if: failure()
         run: |
           ./scripts/primaza.sh log
+          
+          POD_NAME=$(k get pod -l app.kubernetes.io/name=primaza-app -n ${PRIMAZA_NAMESPACE} -o name)
+          log BLUE "Information of the Primaza pod"
+          kubectl describe $POD_NAME -n $PRIMAZA_NAMESPACE
 
       - name: (Only if it failed) Log Atomic Fruits traces at failures
         if: failure()
