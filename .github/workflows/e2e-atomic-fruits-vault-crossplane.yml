@@ -70,6 +70,9 @@ jobs:
           VAULT_URL: http://vault-internal.vault:8200
         run: |
           ./scripts/primaza.sh localdeploy
+          ./scripts/primaza.sh log
+          echo "--------------------------------------------------------"
+          echo $PRIMAZA_IMAGE_NAME
           ./scripts/primaza.sh isAlive
 
       - name: Load the data such as cluster, services, claim & credential

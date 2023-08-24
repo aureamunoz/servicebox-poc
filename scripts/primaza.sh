@@ -126,7 +126,7 @@ function localDeploy() {
     cmdExec "k wait -n ${PRIMAZA_NAMESPACE} \
       --for=condition=ready pod \
       -l app.kubernetes.io/name=primaza-app \
-      --timeout=7m"
+      --timeout=2m"
 
     note "waiting till Primaza Application is running"
     POD_NAME=$(k get pod -l app.kubernetes.io/name=primaza-app -n ${PRIMAZA_NAMESPACE} -o name)
