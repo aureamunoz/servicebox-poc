@@ -56,7 +56,7 @@ function primazaUsage() {
 function build() {
   cmdExec "mvn clean install -DskipTests -Dquarkus.container-image.build=true \
      -Dquarkus.container-image.push=true \
-     -Dquarkus.container-image.registry=${REGISTRY} \
+     -Dquarkus.container-image.registry=localhost:5001 \
      -Dquarkus.container-image.group=${REGISTRY_GROUP} \
      -Dquarkus.container-image.tag=${IMAGE_TAG} \
      -Dquarkus.container-image.insecure=true \
