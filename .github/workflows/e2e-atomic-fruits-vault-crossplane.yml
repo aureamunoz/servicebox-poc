@@ -70,9 +70,6 @@ jobs:
           VAULT_URL: http://vault-internal.vault:8200
         run: |
           ./scripts/primaza.sh localdeploy
-          ./scripts/primaza.sh log
-          echo "--------------------------------------------------------"
-          echo $PRIMAZA_IMAGE_NAME
           ./scripts/primaza.sh isAlive
 
       - name: Load the data such as cluster, services, claim & credential
@@ -175,13 +172,9 @@ jobs:
           fi
 
       - name: (Only if it failed) Log Primaza traces at failures
-#        if: failure()
+        if: failure()
         run: |
           ./scripts/primaza.sh log
-          
-#          POD_NAME=$(k get pod -l app.kubernetes.io/name=primaza-app -n ${PRIMAZA_NAMESPACE} -o name)
-#          log BLUE "Information of the Primaza pod"
-#          kubectl describe $POD_NAME -n $PRIMAZA_NAMESPACE
 
       - name: (Only if it failed) Log Atomic Fruits traces at failures
         if: failure()
