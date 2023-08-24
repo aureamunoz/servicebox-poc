@@ -37,7 +37,8 @@ jobs:
           REGISTRY_NAME: kind-registry
           REGISTRY_PORT: 5001
         run: |
-          curl -s -L "https://raw.githubusercontent.com/snowdrop/k8s-infra/main/kind/kind.sh" | bash -s install
+          # curl -s -L "https://raw.githubusercontent.com/snowdrop/k8s-infra/main/kind/kind.sh" | bash -s install
+          curl -s -L "https://raw.githubusercontent.com/aureamunoz/my-infra/main/k8s-ingress-kind/kind-with-registry.sh" | bash -s install
           
           # Adding registry name to the /etc/hosts file
           echo "127.0.0.1 $REGISTRY_NAME" | sudo tee -a /etc/hosts
