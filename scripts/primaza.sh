@@ -15,7 +15,7 @@ GITHUB_SHA_COMMIT=${GITHUB_SHA_COMMIT:-$(git rev-parse --short HEAD)}
 
 # Parameters to be used when we build and push to a local container registry
 REGISTRY_GROUP=${REGISTRY_GROUP:-local}
-REGISTRY=${KIND_REGISTRY:-kind-registry:5001}
+REGISTRY=${KIND_REGISTRY:-kind-registry:5000}
 IMAGE_TAG=${IMAGE_TAG:-latest}
 #INGRESS_HOST=primaza.${VM_IP}.nip.io
 PRIMAZA_URL=${PRIMAZA_URL:-primaza.$VM_IP.nip.io}
@@ -126,7 +126,7 @@ function localDeploy() {
     cmdExec "k wait -n ${PRIMAZA_NAMESPACE} \
       --for=condition=ready pod \
       -l app.kubernetes.io/name=primaza-app \
-      --timeout=2m"
+      --timeout=1m"
 
     note "waiting till Primaza Application is running"
     POD_NAME=$(k get pod -l app.kubernetes.io/name=primaza-app -n ${PRIMAZA_NAMESPACE} -o name)

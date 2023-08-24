@@ -45,6 +45,8 @@ jobs:
 
           # Exporting the registry location for subsequent jobs
           echo "KIND_REGISTRY=${REGISTRY_NAME}:${REGISTRY_PORT}" >> $GITHUB_ENV
+          
+          docker ps
 
       - name: Build primaza, generate image, Helm chart and push image
         env:
