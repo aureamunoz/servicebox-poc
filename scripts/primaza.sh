@@ -167,8 +167,8 @@ function remove() {
 function log() {
   POD_NAME=$(kubectl get pod -l app.kubernetes.io/name=primaza-app -n $PRIMAZA_NAMESPACE -o name)
 
-  warn "Primaza application log ..."
-  k logs $POD_NAME -n $PRIMAZA_NAMESPACE
+#  warn "Primaza application log ..."
+#  k logs $POD_NAME -n $PRIMAZA_NAMESPACE
 
   warn "Primaza pod information"
   k describe $POD_NAME -n $PRIMAZA_NAMESPACE
