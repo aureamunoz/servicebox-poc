@@ -34,7 +34,7 @@ jobs:
           cache: 'maven'
       - name: Setup Kubernetes using kind and deploy a local container registry
         env:
-          REGISTRY_NAME: kind-registry
+          REGISTRY_NAME: localhost
           REGISTRY_PORT: 5001
         run: |
           # curl -s -L "https://raw.githubusercontent.com/snowdrop/k8s-infra/main/kind/kind.sh" | bash -s install
@@ -44,8 +44,7 @@ jobs:
           echo "127.0.0.1 $REGISTRY_NAME" | sudo tee -a /etc/hosts
 
           # Exporting the registry location for subsequent jobs
-          #echo "KIND_REGISTRY=${REGISTRY_NAME}:${REGISTRY_PORT}" >> $GITHUB_ENV
-          echo "KIND_REGISTRY=127.0.0.1:${REGISTRY_PORT}" >> $GITHUB_ENV
+          echo "KIND_REGISTRY=${REGISTRY_NAME}:${REGISTRY_PORT}" >> $GITHUB_ENV
           
           docker ps
 
@@ -55,7 +54,7 @@ jobs:
 
           PRIMAZA_GITHUB_REPO: ${{ github.event.pull_request.head.repo.full_name }}
           GITHUB_SHA_COMMIT: ${{ github.sha }}
-          PRIMAZA_IMAGE_NAME: localhost:5001/local/primaza-app
+          PRIMAZA_IMAGE_NAME: $KIND_REGISTRY/local/primaza-app
           PRIMAZA_NAMESPACE: primaza
 
           PRIMAZA_URL: primaza.127.0.0.1.nip.io
@@ -67,7 +66,7 @@ jobs:
       - name: Deploy primaza helm chart
         env:
           PRIMAZA_URL: primaza.127.0.0.1.nip.io
-          PRIMAZA_IMAGE_NAME: kind-registry:5000/local/primaza-app
+          PRIMAZA_IMAGE_NAME: $KIND_REGISTRY/local/primaza-app
           PRIMAZA_NAMESPACE: primaza
           # Variable needed by the helm chart to configure primaza vault client
           VAULT_URL: http://vault-internal.vault:8200
