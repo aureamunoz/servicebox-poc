@@ -67,7 +67,7 @@ jobs:
       - name: Deploy primaza helm chart
         env:
           PRIMAZA_URL: primaza.127.0.0.1.nip.io
-          PRIMAZA_IMAGE_NAME: $KIND_REGISTRY/local/primaza-app
+          PRIMAZA_IMAGE_NAME: kind-registry:5000/local/primaza-app
           PRIMAZA_NAMESPACE: primaza
           # Variable needed by the helm chart to configure primaza vault client
           VAULT_URL: http://vault-internal.vault:8200
