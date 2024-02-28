@@ -15,7 +15,7 @@
     <bootstrap.version>5.3.2</bootstrap.version>
     <bootstrap-icons.version>1.11.2</bootstrap-icons.version>
     <htmx.version>1.9.3</htmx.version>
-    <quarkus-helm.version>1.2.1</quarkus-helm.version>
+    <quarkus-helm.version>1.2.3</quarkus-helm.version>
     <quarkus-vault.version>3.4.0</quarkus-vault.version>
   </properties>
   <dependencies>
@@ -228,17 +228,20 @@
         </executions>
         <configuration>
           <extraAnnotations>true</extraAnnotations>
-          <urls>
-            <!-- Primaza CRDs -->
-            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_clusterenvironments.yaml</url>
-            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_registeredservices.yaml</url>
-            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_servicebindings.yaml</url>
-            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_servicecatalogs.yaml</url>
-            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_serviceclaims.yaml</url>
-            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_serviceclasses.yaml</url>
+          <source>src/main/resources/kubernetes</source>
+<!--          <urls>-->
+<!--            &lt;!&ndash; Primaza CRDs &ndash;&gt;-->
+<!--            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_clusterenvironments.yaml</url>-->
+<!--            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_registeredservices.yaml</url>-->
+<!--            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_servicebindings.yaml</url>-->
+<!--            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_servicecatalogs.yaml</url>-->
+<!--            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_serviceclaims.yaml</url>-->
+<!--            <url>https://raw.githubusercontent.com/primaza/primaza/main/config/crd/bases/primaza.io_serviceclasses.yaml</url>-->
             <!-- Crossplane Helm release able to deploy a helm chart -->
-            <url>https://raw.githubusercontent.com/crossplane-contrib/provider-helm/master/package/crds/helm.crossplane.io_releases.yaml</url>
-          </urls>
+<!--            <url>https://raw.githubusercontent.com/crossplane-contrib/provider-helm/master/package/crds/helm.crossplane.io_releases.yaml</url>-->
+<!--            <url>https://raw.githubusercontent.com/crossplane-contrib/provider-helm/342d34f6c4ae3bcf50d18bb08e5b1bfb6cc96d8c/package/crds/helm.crossplane.io_releases.yaml</url>-->
+<!--            <url>https://raw.githubusercontent.com/crossplane-contrib/provider-helm/ecb372986ffe6c7a344e0d6c0b3d376face5c2cb/package/crds/helm.crossplane.io_releases.yaml</url>-->
+<!--          </urls>-->
         </configuration>
       </plugin>
     </plugins>

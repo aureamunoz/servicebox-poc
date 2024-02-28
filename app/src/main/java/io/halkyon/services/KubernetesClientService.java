@@ -244,12 +244,12 @@ public class KubernetesClientService {
         // Create Release object
         ReleaseBuilder release = new ReleaseBuilder();
         release.withApiVersion("helm.crossplane.io").withKind("v1beta1").withNewMetadata().withName(service.helmChart)
-                .endMetadata().withNewSpec().withNewV1beta1ForProvider().addNewV1beta1Set().withName("auth.database")
-                .withValue("fruits_database").endV1beta1Set().addNewV1beta1Set().withName("auth.username")
-                .withValue("healthy").endV1beta1Set().addNewV1beta1Set().withName("auth.password").withValue("healthy")
-                .endV1beta1Set().withNamespace(service.namespace).withWait(true).withNewV1beta1Chart()
-                .withName(service.helmChart).withRepository(service.helmRepo).withVersion(service.helmChartVersion)
-                .endV1beta1Chart().endV1beta1ForProvider().withNewV1beta1ProviderConfigRef().withName("helm-provider")
+                .endMetadata().withNewSpec().withNewForProvider().addNewSet().withName("auth.database")
+                .withValue("fruits_database").endV1beta1Set().addNewSet().withName("auth.username").withValue("healthy")
+                .endV1beta1Set().addNewSet().withName("auth.password").withValue("healthy").endV1beta1Set()
+                .withNamespace(service.namespace).withWait(true).withNewChart().withName(service.helmChart)
+                .withRepository(service.helmRepo).withVersion(service.helmChartVersion).endV1beta1Chart()
+                .endV1beta1ForProvider().withNewProviderConfigRef().withName("helm-provider")
                 .endV1beta1ProviderConfigRef().endSpec();
 
         // TODO: Logic to be reviewed as we have 2 use cases:

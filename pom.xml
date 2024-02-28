@@ -31,7 +31,7 @@
 
     <properties>
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
@@ -41,8 +41,8 @@
         <htmlunit.version>3.9.0</htmlunit.version>
         <formatter-maven-plugin.version>2.23.0</formatter-maven-plugin.version>
         <impsort-maven-plugin.version>1.9.0</impsort-maven-plugin.version>
-        <lobmok.version>1.18.30</lobmok.version>
-        <sundrio.version>0.101.3</sundrio.version>
+        <lombok.version>1.18.30</lombok.version>
+        <sundrio.version>0.103.0</sundrio.version>
 
         <skipITs>true</skipITs>
         <src.format.goal>format</src.format.goal>
@@ -78,7 +78,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>${lobmok.version}</version>
+                <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
@@ -111,6 +111,13 @@
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>
+<!--                    <annotationProcessorPaths>-->
+<!--                        <path>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                            <version>${lombok.version}</version>-->
+<!--                        </path>-->
+<!--                    </annotationProcessorPaths>-->
                 </configuration>
             </plugin>
             <plugin>
